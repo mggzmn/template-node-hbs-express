@@ -28,9 +28,14 @@ app.get("/about", (req, res) => {
   });
 });
 app.get("/weather", (req, res) => {
-  res.render("weather", {
-    title: "Weather",
-    name: "Mariana",
+  if (!req.query.address) {
+    return res.send({
+      error: "You must provide an address",
+    });
+  }
+  res.send({
+    forecast:"It is snowing",
+    address:req.query.address
   });
 });
 
